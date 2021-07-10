@@ -25,20 +25,17 @@ jobs:
             - name: Commit files
               continue-on-error: true
               run: |
+                  ls dist
+                  ls docs
+                  cat .gitignore
                   git config --local user.email "action@github.com"
                   git config --local user.name "GitHub Action"
                   rm -rf docs
                   mv dist docs
                   git add -A
-                  git commit -m "LPL and LDL game calendar has updated" -a
+                  git commit -m "test" -a
             - name: "Push changes"
               uses: ad-m/github-push-action@master
               continue-on-error: true
               with:
                   github_token: ${{ secrets.RELEASE_TOKEN }}
-            - name: "Create Release"
-              uses: elgohr/Github-Release-Action@master
-              env:
-                  GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-              with:
-                  args: Slides
