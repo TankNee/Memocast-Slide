@@ -27,6 +27,7 @@ jobs:
               run: |
                   git config --local user.email "action@github.com"
                   git config --local user.name "GitHub Action"
+                  rm -rf docs
                   mv dist docs
                   git add -A
                   git commit -m "LPL and LDL game calendar has updated" -a
