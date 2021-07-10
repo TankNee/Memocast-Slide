@@ -39,3 +39,9 @@ jobs:
               continue-on-error: true
               with:
                   github_token: ${{ secrets.RELEASE_TOKEN }}
+            - name: "Create Release"
+              uses: elgohr/Github-Release-Action@master
+              env:
+                  GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+              with:
+                  args: Slides
