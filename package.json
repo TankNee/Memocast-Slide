@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "slidev --open --remote",
     "build": "slidev build",
-    "base-build": "slidev build --base https://cdn.jsdelivr.net/gh/TankNee/Memocast-Slide/docs/",
+    "base-build": "slidev build --base /Memocast-Slide/",
     "export": "slidev export"
   },
   "dependencies": {
