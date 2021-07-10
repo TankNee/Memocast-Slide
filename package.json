@@ -3,6 +3,7 @@
   "scripts": {
     "dev": "slidev --open --remote",
     "build": "slidev build",
+    "base-build": "slidev build --base /memocast-slide/",
     "export": "slidev export"
   },
   "dependencies": {
