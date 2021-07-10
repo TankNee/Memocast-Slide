@@ -1,4 +1,4 @@
-name: LOL Game Publisher
+name: Slides Builder
 
 on:
     push:
@@ -20,11 +20,8 @@ jobs:
               run: yarn
             - name: "Install playwright-chromium"
               run: yarn add playwright-chromium
-            - name: "Export"
-              timeout-minutes: 350
-              run: yarn run export
             - name: "Build"
-              run: yarn run build
+              run: yarn run base-build
             - name: Commit files
               continue-on-error: true
               run: |
