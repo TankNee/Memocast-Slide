@@ -8,12 +8,13 @@ background: https://source.unsplash.com/collection/94734566/1920x1080
 class: 'text-center'
 # https://sli.dev/custom/highlighters.html
 highlighter: shiki
+aspectRatio: '16/9'
+download: true
 # some information about the slides, markdown enabled
 info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
+  ## Memocast Presentation Slides
 
-  Learn more at [Sli.dev](https://sli.dev)
+  Learn more at [GitHub](https://github.com/TankNee/Memocast)
 ---
 
 # Welcome to Memocast
@@ -22,7 +23,7 @@ An awesome wiz note client which was based on ELectron.
 
 <div class="pt-12">
   <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
-    Check out! <carbon:arrow-right class="inline"/>
+    Let's go! <carbon:arrow-right class="inline"/>
   </span>
 </div>
 
@@ -37,6 +38,16 @@ An awesome wiz note client which was based on ELectron.
 <!--
 The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
 -->
+
+---
+layout: cover
+class: text-center
+---
+# 获取演示并体验
+
+只要连接了校园网，那么就可以通过以下链接获取到当前幻灯片
+
+幻灯片链接: [Memocast Slide](http://10.16.83.27:3030)
 
 ---
 layout: image-right
@@ -92,14 +103,13 @@ h1 {
 
 ---
 
-
 <div align="center">
   <img src="https://img.tanknee.cn/blogpicbed/2021/07/08/20210708fc3b67e797e90.png" style="width:250px;height:250px;margin:20px;">
 </div>
 
 # Memocast 的起源
 
-时间来到2021年，许多的笔记应用都支持了Markdown，但大多支持的并不够完整，或是缺少快捷的输入设置，或是不支持完整的Markdown语法，亦或是其他不尽人意的地方，因此我也借这个机会想要创造一款流畅优雅的笔记软件满足这一部分人的细分需求。
+时间来到2021年，许多的笔记应用都支持了Markdown，但大多支持的并不够完整，或是缺少快捷的输入设置，或是不支持完整的Markdown语法，抑或是其他不尽人意的地方，因此我也借这个机会想要创造一款流畅优雅的笔记软件满足这一部分人的细分需求。
 
 ---
 
@@ -170,9 +180,7 @@ Typora
 
 ---
 
-# 设计思路
-
-## 确定需求与项目目标
+# 确定需求与项目目标
 
 | 需求名称         | 描述            |
 | ------------ | ----------------------- |
@@ -189,9 +197,7 @@ Typora
 
 ---
 
-# 设计思路
-
-## 确定需求与项目目标
+# 确定需求与项目目标
 
 | 需求名称         | 描述            |
 | ------------ | ----------------------- |
@@ -207,9 +213,7 @@ Typora
 
 ---
 
-# 设计思路
-
-## 确定需求与项目目标
+# 确定需求与项目目标
 
 | 需求名称         | 描述            |
 | ------------ | ----------------------- |
@@ -219,7 +223,17 @@ Typora
 
 ---
 
-# 技术栈
+# 项目结构
+
+<div align="center">
+  <img src="https://img.tanknee.cn/blogpicbed/2021/07/10/2021071096eff5151fa5b.svg" alt="structure"/>
+</div>
+
+
+
+---
+
+# 项目结构
 
 Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/navigation.html)
 
