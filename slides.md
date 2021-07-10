@@ -9,7 +9,6 @@ class: 'text-center'
 # https://sli.dev/custom/highlighters.html
 highlighter: shiki
 aspectRatio: '16/9'
-download: true
 # some information about the slides, markdown enabled
 info: |
   ## Memocast Presentation Slides
