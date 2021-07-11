@@ -1,28 +1,23 @@
 ---
-# try also 'default' to start simple
 theme: seriph
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
 background: https://source.unsplash.com/collection/94734566/1920x1080
-# apply any windi css classes to the current slide
-class: 'text-center'
-# https://sli.dev/custom/highlighters.html
+class: text-center
 highlighter: shiki
-aspectRatio: '16/9'
-# some information about the slides, markdown enabled
+aspectRatio: 16/9
 info: |
   ## Memocast Presentation Slides
 
   Learn more at [GitHub](https://github.com/TankNee/Memocast)
+title: Memocast
 ---
 
-# Welcome to Memocast
+# Memocast
 
-An awesome wiz note client which was based on ELectron.
+一个所见即所得的为知笔记客户端，基于 Electron 打造。
 
 <div class="pt-12">
   <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
-    Let's go! <carbon:arrow-right class="inline"/>
+    即刻一览! <carbon:arrow-right class="inline"/>
   </span>
 </div>
 
@@ -32,7 +27,6 @@ An awesome wiz note client which was based on ELectron.
     <carbon-logo-github />
   </a>
 </div>
-
 
 <!--
 The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
@@ -44,34 +38,49 @@ class: text-center
 ---
 # 获取演示并体验
 
-只要连接了校园网，那么就可以通过以下链接获取到当前幻灯片
+可以通过以下链接获取到当前幻灯片
 
-幻灯片链接: [Memocast Slide](http://10.16.83.27:3030)
+幻灯片链接: [https://www.tanknee.cn/Memocast-Slide](https://www.tanknee.cn/Memocast-Slide)
 
 ---
 layout: image-right
-image: https://img.tanknee.cn/blogpicbed/2021/07/09/2021070995e5a81456071.png
+image: https://source.unsplash.com/collection/94714566/1920x1080
 ---
 
 # 团队成员
 
 <div>
   <div style="display:flex;align-items:center;">
-    <img src="https://img.tanknee.cn/blogpicbed/2020/06/2020060186bc451656937.png" style="width:100px;height:100px;border-radius:50%;margin:20px;">
+    <img src="https://img.tanknee.cn/blogpicbed/2020/06/2020060186bc451656937.png" style="width:100px;height:100px;border-radius:50%;margin:10px;">
     <p>
-      <span>倪桐珂</span>
+      <p>
+        <span>倪桐珂</span>
+      </p>
+      <p>
+        <span>Memocast 小组组长，负责框架搭建，技术选型，产品主体开发。</span>
+      </p>
     </p>
   </div>
   <div style="display:flex;align-items:center;">
-    <img src="https://img.tanknee.cn/blogpicbed/2021/07/09/20210709b46e7e1a4498c.png" style="width:100px;height:100px;border-radius:50%;margin:20px;">
+    <img src="https://img.tanknee.cn/blogpicbed/2021/07/11/20210711c47d246ed8d05.png" style="width:100px;height:100px;border-radius:50%;margin:10px;">
     <p>
-      <span>王格格</span>
+      <p>
+        <span>王格格</span>
+      </p>
+      <p>
+        <span>负责项目部分功能实现，承担产品测试等职责。</span>
+      </p>
     </p>
   </div>
   <div style="display:flex;align-items:center;">
-    <img src="https://img.tanknee.cn/blogpicbed/2021/07/09/20210709d6d69c230d466.png" style="width:100px;height:100px;border-radius:50%;margin:20px;">
+    <img src="https://img.tanknee.cn/blogpicbed/2021/07/09/20210709d6d69c230d466.png" style="width:100px;height:100px;border-radius:50%;margin:10px;">
     <p>
-      <span>王怡贤</span>
+      <p>
+        <span>王怡贤</span>
+      </p>
+      <p>
+        <span>负责产品测试，承担产品文档编写，产品国际化部分实现等职责</span>
+      </p>
     </p>
   </div>
   <!-- <img src="https://img.tanknee.cn/blogpicbed/2021/07/09/20210709d6d69c230d466.png" style="width:100px;height:100px;border-radius:50%;margin:20px;">
@@ -82,11 +91,6 @@ image: https://img.tanknee.cn/blogpicbed/2021/07/09/2021070995e5a81456071.png
 
 <br>
 <br>
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/guide/syntax#embedded-styles
--->
 
 <style>
 h1 {
@@ -101,14 +105,51 @@ h1 {
 </style>
 
 ---
+preload: false
+---
 
-<div align="center">
-  <img src="https://img.tanknee.cn/blogpicbed/2021/07/08/20210708fc3b67e797e90.png" style="width:250px;height:250px;margin:20px;">
-</div>
-
-# Memocast 的起源
+# 起源
 
 时间来到2021年，许多的笔记应用都支持了Markdown，但大多支持的并不够完整，或是缺少快捷的输入设置，或是不支持完整的Markdown语法，抑或是其他不尽人意的地方，因此我也借这个机会想要创造一款流畅优雅的笔记软件满足这一部分人的细分需求。
+
+<div>
+  <!-- <img src="https://img.tanknee.cn/blogpicbed/2021/07/08/20210708fc3b67e797e90.png" style="width:250px;height:250px;margin:20px;"> -->
+  <div class="w-60 relative mt-6">
+  <div class="relative w-40 h-40">
+    <img
+      v-motion
+      :initial="{ x: 800, y: -100, scale: 1.2 }"
+      :enter="final"
+      class="absolute top-0 left-0 right-0 bottom-0"
+      src="https://img.tanknee.cn/blogpicbed/2021/07/11/2021071137c6d82e085c4.png"
+    />
+  </div>
+
+  <div 
+    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
+    v-motion
+    :initial="{ x: -80, opacity: 0}"
+    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
+    Memocast
+  </div>
+</div>
+</div>
+
+
+<script setup lang="ts">
+const final = {
+  x: 0,
+  y: 0,
+  rotate: 0,
+  scale: 1,
+  transition: {
+    type: 'spring',
+    damping: 10,
+    stiffness: 20,
+    mass: 2
+  }
+}
+</script>
 
 ---
 
@@ -144,6 +185,13 @@ h1 {
 - 使用Vue、Vuex、Vue Router生态构建页面框架，使用Vue-i18n实现用户界面、用户提示的多语言
 
 ---
+layout: cover
+class: text-center
+---
+# 设计思路
+
+Design
+---
 
 # 设计思路
 
@@ -176,6 +224,14 @@ Typora
 ## 原型图
 
 ![](https://img.tanknee.cn/blogpicbed/2021/07/09/2021070939dc151e2e57a.png)
+
+---
+layout: cover
+class: text-center
+---
+# 确定需求与项目目标
+
+Requirement and Destination
 
 ---
 
@@ -219,6 +275,17 @@ Typora
 | 快捷键          | 用户可以使用快捷键访问功能           |
 | 软件更新         | 软件可以检查版本更新              |
 
+## 项目目标
+
+我们希冀创造一个流畅，便捷，得心应手的编辑器软件，我们将会把 Markdown 作为第一公民，用更多的精力去保障 Markdown 的写作、阅读体验，同时在保证体验的目标以外还要竭尽可能去提升写作效率，并完成从发布到更新的全链条产品，而不是单纯的一个软件，我们希望用 GitHub 的平台来串联所有的用户，让软件不是无本之木、无源之水。
+
+---
+layout: cover
+class: text-center
+---
+# 项目结构
+
+Project Structure
 
 ---
 
@@ -234,24 +301,34 @@ Typora
 
 # 项目结构
 
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/navigation.html)
+> 为什么要这么做，因为笔记应用一个重要的特征就是流畅，如果动画，渲染等部分出现了少许停顿，就可能在用户心里留下卡顿的印象，如果出现某些错误没有提示，而是直接卡死那么更会导致用户心理预期直线下降。分层，是为了更好的划清职责，也是为了让每一层都做好自己的事情。
 
-### Keyboard Shortcuts
+##  Render And Interact
 
-|     |     |
-| --- | --- |
-| <kbd>right</kbd> / <kbd>space</kbd>| next animation or slide |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd> | previous slide |
-| <kbd>down</kbd> | next slide |
+这一层是与用户直接接触的，是最影响体验的，我将这一层再细分为几个部分：
 
-<!-- https://sli.dev/guide/animations.html#click-animations -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
+1. **UI 与动画**。如果说功能是让用户留下来的关键，那么第一眼的视觉观感就是用户会不会来尝试的关键，我们使用了开源社区知名的 Quasar UI Framework 来绘制我们的用户界面，应用经典的 Material Design 风格，并且大量使用了水波纹动画，让整体质感更加灵动圆润。
+
+2. **性能**。除了必要的样式资源，js资源以及部分网络图片资源以外，整个渲染进程不会发送额外的网络请求，专注于体验。
+
+3. **快捷输入与快捷键**。我们的编辑器将对 Markdown 进行针对性优化，由于 Markdown 中有许多的样式代码，虽然不是特别复杂，但是如果缺少了快捷输入那么也会影响用户体验，同时针对复杂的表格操作，无处安放的笔记图片资源，我们也都提供了一套完整的解决方案。
+
+
+---
+layout: cover
+class: text-center
+---
+# 功能展示
+
+---
+layout: cover
+class: text-center
+---
+# 细节优化与提升
+
+---
+
+# 细节优化与提升
 
 ---
 layout: image-right
@@ -292,6 +369,7 @@ function updateUser(id: number, update: User) {
   display: none;
 }
 </style>
+
 
 ---
 
@@ -378,24 +456,10 @@ Animations are powered by [@vueuse/motion](https://motion.vueuse.org/).
   <div class="relative w-40 h-40">
     <img
       v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
+      :initial="{ x: 800, y: -100, scale: 1.5 }"
       :enter="final"
       class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-square.png"
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-circle.png"
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-triangle.png"
+      src="https://img.tanknee.cn/blogpicbed/2021/07/11/2021071137c6d82e085c4.png"
     />
   </div>
 
@@ -404,7 +468,7 @@ Animations are powered by [@vueuse/motion](https://motion.vueuse.org/).
     v-motion
     :initial="{ x: -80, opacity: 0}"
     :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
+    Memocast
   </div>
 </div>
 
