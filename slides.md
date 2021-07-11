@@ -87,11 +87,6 @@ image: https://source.unsplash.com/collection/94714566/1920x1080
   <img src="https://img.tanknee.cn/blogpicbed/2021/07/09/20210709d6d69c230d466.png" style="width:100px;height:100px;border-radius:50%;margin:20px;"> -->
 </div>
 
-
-
-<br>
-<br>
-
 <style>
 h1 {
   background-color: #2B90B6;
@@ -327,6 +322,12 @@ Project Structure
 
 同时这一层还管理着整个应用界面的状态，将原始数据包装成 Getters 提供给渲染层，将与主进程交互的能力包装成 Actions ，为渲染层和主进程两者提供沟通的桥梁
 
+## File System and Native Platform
+
+这一层主要是处理存储在本地的用户信息，包括账号，编辑器设置，图片缓存，笔记缓存等等，一切的手段都是为了提高交互体验，减少等待时间，同时也在这一层注册一些跟操作系统相关的菜单，快捷键等。
+
+我们还在这一层自定了私有协议，部分上传到笔记服务器的图片数据将会通过私有协议保存到本地，第二次访问时，如果本地的缓存仍然存在，那么就直接传输本地数据，而不需要再次进行请求。
+
 ---
 layout: cover
 class: text-center
@@ -343,232 +344,65 @@ class: text-center
 
 # 细节优化与提升
 
----
-layout: image-right
-image: https://source.unsplash.com/collection/94734566/1920x1080
----
+> 以打字机模式为例
+## 打字机模式
 
-# Code
+在 Word 等大多数编辑软件中，如果你输入了很多内容，超过一屏之后，光标通常会位于屏幕最下方，这时除非你滚动一下文档，否则光标会一直处于屏幕最下的位置，你的视线也只能一直盯在这个位置，这对需要长时间输入的用户来说并不友好。所谓打字机模式，其实就是像传统的打字机一样，在用户输入时将光标在屏幕上的 y 坐标固定（比如固定在屏幕中间），这样便能保持用户视线高度固定。在技术上来说，就是固定文档的滚动位置。
 
-Use code snippets and get the highlighting directly![^1]
+在 Memocast 中，也同样会有这样的问题，因此我们选择监听用户的光标位置，当其与视窗底部的距离小于一个固定值时，自动向下滚动一段距离
 
-```ts {all|2|1-6|9|all}
-interface User {
-  id: number
-  firstName: string
-  lastName: string
-  role: string
-}
-
-function updateUser(id: number, update: User) {
-  const user = getUser(id)
-  const newUser = {...user, ...update}  
-  saveUser(id, newUser)
+```javascript{all|2|4|6|7|all}
+// 如果当前光标已经非常靠近视窗底部，那么就进行打字机模式的滚动
+if (container.clientHeight - y < 100) {
+  // 计算当前可编辑区域的高度
+  const editableHeight = container.clientHeight - 100
+  // 对于不同的操作系统进行不同的处理
+  if (this.$q.platform.is.mac) {
+    helper.animatedScrollTo(container, container.scrollTop + (y - editableHeight), 100)
+  } else {
+    container.scrollTop = container.scrollTop + (y - editableHeight)
+  }
 }
 ```
+---
 
-<arrow v-click="3" x1="400" y1="420" x2="230" y2="330" color="#564" width="3" arrowSize="1" />
+# 细节优化与提升
 
-[^1]: [Learn More](https://sli.dev/guide/syntax.html#line-highlighting)
+<div align="center">
+  <img border="rounded" src="resource/typewriter.gif"/>
+</div>
 
-<style>
-.footnotes-sep {
-  margin-top: 5em;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
+除此以外还有源代码模式，多栏模式，单栏模式等，不再赘述。
 
+---
+layout: cover
+class: text-center
+---
+# 性能优化
+---
+---
+# 性能优化
+
+> 性能也是笔记应用的重中之重
+
+在项目的开发伊始，我们只是顺着网页应用开发的思维惯性，将网络请求，图片，样式资源等都放在渲染进程中，与后端服务的交互也全部都放在渲染进程中，这样做的好处是显而易见的，那就是开发十分便捷，所有请求都可以直接通过 Chrome Devtool 直观的看到，方便调试，不过也有不利的影响，那就是渲染进程的资源终归是有限的，当有一大部分去执行网络请求时，就会导致渲染、用户交互部分的性能变得捉襟见肘，也就容易出现卡顿等问题。
+
+我们的解决方案是迁移网络请求部分，把所有跟为知服务后端交互等接口都封装起来，通过 IPC 调用 Electron 主进程提供等一个接口，通过主进程调用网络请求，降低渲染进程等压力。
 
 ---
 
-# Components
-
-<div grid="~ cols-2 gap-4">
-<div>
-
-You can use Vue components directly inside your slides.
-
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
-
-```html
-<Counter :count="10" />
-```
-
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
-
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
-</div>
-<div>
-
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
-</div>
-</div>
-
-
----
-class: px-20
----
-
-# Themes
-
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
+# 性能优化
 
 <div grid="~ cols-2 gap-2" m="-t-2">
 
-```yaml
----
-theme: default
----
-```
+## 迁移之前
 
-```yaml
----
-theme: seriph
----
-```
+## 迁移之后
 
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true">
+<img border="rounded" src="resource/performance/before.png"/>
 
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true">
+<img border="rounded" src="resource/performance/after.png"/>
 
 </div>
-
-Read more about [How to use a theme](https://sli.dev/themes/use.html) and
-check out the [Awesome Themes Gallery](https://sli.dev/themes/gallery.html).
-
----
-preload: false
----
-
-# Animations
-
-Animations are powered by [@vueuse/motion](https://motion.vueuse.org/).
-
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }">
-  Slidev
-</div>
-```
-
-<div class="w-60 relative mt-6">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://img.tanknee.cn/blogpicbed/2021/07/11/2021071137c6d82e085c4.png"
-    />
-  </div>
-
-  <div 
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Memocast
-  </div>
-</div>
-
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
-}
-</script>
-
-<div
-  v-motion
-  :initial="{ x:35, y: 40, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn More](https://sli.dev/guide/animations.html#motion)
-
-</div>
-
----
-
-# LaTeX
-
-LaTeX is supported out-of-box powered by [KaTeX](https://katex.org/).
-
-<br>
-
-Inline $\sqrt{3x-1}+(1+x)^2$
-
-Block
-$$
-\begin{array}{c}
-
-\nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} &
-= \frac{4\pi}{c}\vec{\mathbf{j}}    \nabla \cdot \vec{\mathbf{E}} & = 4 \pi \rho \\
-
-\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} & = \vec{\mathbf{0}} \\
-
-\nabla \cdot \vec{\mathbf{B}} & = 0
-
-\end{array}
-$$
-
-<br>
-
-[Learn more](https://sli.dev/guide/syntax#latex)
-
----
-
-# Diagrams
-
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
-
-<div class="grid grid-cols-2 gap-10 pt-4 -mb-6">
-
-```mermaid {scale: 0.9}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-</div>
-
-[Learn More](https://sli.dev/guide/syntax.html#diagrams)
-
-
----
-layout: center
-class: text-center
----
-
-# Learn More
-
-[Documentations](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/showcases.html)
+<br/>
+可见在调整了网络请求等策略之后，还是有一定的性能提升的。
