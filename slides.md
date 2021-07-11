@@ -125,9 +125,9 @@ preload: false
   </div>
 
   <div 
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
+    class="text-5xl absolute top-14 left-60 -z-1"
     v-motion
-    :initial="{ x: -80, opacity: 0}"
+    :initial="{ x: -150, opacity: 0}"
     :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
     Memocast
   </div>
@@ -369,7 +369,7 @@ if (container.clientHeight - y < 100) {
 # 细节优化与提升
 
 <div align="center">
-  <img border="rounded" src="resource/typewriter.gif"/>
+  <img border="rounded" src="http://cdn.jsdelivr.net/gh/TankNee/Memocast-Slide/resource/typewriter.gif"/>
 </div>
 
 除此以外还有源代码模式，多栏模式，单栏模式等，不再赘述。
@@ -399,9 +399,9 @@ class: text-center
 
 ## 迁移之后
 
-<img border="rounded" src="resource/performance/before.png"/>
+<img border="rounded" src="http://cdn.jsdelivr.net/gh/TankNee/Memocast-Slide/resource/performance/before.png"/>
 
-<img border="rounded" src="resource/performance/after.png"/>
+<img border="rounded" src="http://cdn.jsdelivr.net/gh/TankNee/Memocast-Slide/resource/performance/after.png"/>
 
 </div>
 <br/>
